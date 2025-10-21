@@ -3,6 +3,8 @@ from nonebot import on_message
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent, PrivateMessageEvent, MessageSegment
 from nonebot.log import logger
 
+API_URL = "https://df-api.shallow.ink/df/tools/dailykeyword"
+
 daily_password = on_message(priority=3, block=True)
 
 @daily_password.handle()
@@ -39,4 +41,5 @@ async def send(bot: Bot, event: MessageEvent, msg):
         elif isinstance(event, PrivateMessageEvent):
             await bot.send_private_msg(user_id=event.user_id, message=msg)
     except Exception as e:
+
         logger.error(f"发送消息失败: {e}")
